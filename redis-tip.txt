@@ -1,0 +1,9 @@
+레디스
+쉘스크립트로 여러 키값 불러오기
+-- 측정 key 값 추출
+[root@redis home]# redis-cli -h 127.0.0.1 -p 6379 -a 'aa' --scan --pattern api-app_* -n 10
+
+-- select All key values
+[root@redis home]# redis-cli -h 127.0.0.1 -p 6379 -a 'aa'' --scan --pattern api-app_* -n 10 | xargs redis-cli -h 127.0.0.1 -p 6379 -a 'aa' mget 
+
+[root@redis home]# redis-cli -h 127.0.0.1 -p 6379 -a 'aa' keys api-app_* | xargs -L 1 redis-cli -h 127.0.0.1 -p 6379 -a 'aa' get
